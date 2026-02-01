@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For My Love ❤️</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg,#ffafbd,#ffc3a0);
+    min-height:100vh;
+}
+
+.page{display:none;}
+.page.active{display:block;}
+
+.container{
+    max-width:800px;
+    margin:auto;
+    padding:20px;
+    text-align:center;
+}
+
+.heart-pulse i{
+    font-size:80px;
+    color:#ff4d6d;
+    animation:pulse 2s infinite;
+}
+
+@keyframes pulse{
+    0%{transform:scale(1);}
+    50%{transform:scale(1.1);}
+    100%{transform:scale(1);}
+}
+
+.title{
+    font-size:2.5rem;
+    color:#a83a3a;
+    margin:20px 0;
+}
+
+.subtitle{
+    font-size:1.2rem;
+    font-style:italic;
+}
+
+.message-box{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    margin:30px 0;
+}
+
+.enter-btn{
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    font-size:1.2rem;
+    border-radius:50px;
+    cursor:pointer;
+    margin:10px;
+}
+
+.next-btn{
+    background:#ff8fab;
+    color:white;
+    border:none;
+    padding:15px 30px;
+    font-size:1.2rem;
+    border-radius:50px;
+    cursor:pointer;
+    margin-top:20px;
+}
+
+.header{
+    background:white;
+    padding:15px;
+    border-radius:15px;
+    text-align:center;
+}
+
+.back-btn{
+    background:#ff8fab;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.music-player{
+    margin-top:10px;
+    display:flex;
+    gap:10px;
+    justify-content:center;
+}
+
+.music-btn{
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:30px;
+    cursor:pointer;
+}
+
+.photos-container{
+    display:grid;
+    grid-template-columns:1fr;
+    gap:20px;
+    margin-top:20px;
+}
+
+.photo-item{
+    background:white;
+    border-radius:15px;
+    overflow:hidden;
+    box-shadow:0 5px 15px rgba(0,0,0,0.2);
+}
+
+.photo-frame{
+    height:280px;
+}
+
+.photo-img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.photo-caption{
+    padding:15px;
+    font-weight:bold;
+}
+
+.paper-cutting{
+    display:none;
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.9);
+    justify-content:center;
+    align-items:center;
+}
+
+.cutting-paper{
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    max-width:400px;
+    text-align:center;
+}
+
+.close-cutting{
+    background:#ff4d6d;
+    color:white;
+    border:none;
+    width:40px;
+    height:40px;
+    border-radius:50%;
+    cursor:pointer;
+    position:absolute;
+    top:20px;
+    right:20px;
+}
+
+/* Valentine Question Page Styles */
+.valentine-question {
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    margin-top:30px;
+}
+
+.valentine-buttons {
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin-top:30px;
+    flex-wrap:wrap;
+}
+
+.valentine-yes {
+    background:#4CAF50;
+    color:white;
+    border:none;
+    padding:20px 40px;
+    font-size:1.5rem;
+    border-radius:50px;
+    cursor:pointer;
+    transition:transform 0.3s;
+}
+
+.valentine-yes:hover {
+    transform:scale(1.1);
+    background:#45a049;
+}
+
+.valentine-no {
+    background:#f44336;
+    color:white;
+    border:none;
+    padding:20px 40px;
+    font-size:1.5rem;
+    border-radius:50px;
+    cursor:pointer;
+    position:relative;
+    transition:all 0.1s;
+}
+
+.invalid-message {
+    color:#f44336;
+    font-weight:bold;
+    margin-top:20px;
+    display:none;
+}
+
+/* Congrats Page Styles */
+.congrats-page {
+    background:linear-gradient(135deg,#ff6b6b,#ffa726);
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+    padding:20px;
+}
+
+.congrats-content {
+    background:white;
+    padding:40px;
+    border-radius:20px;
+    text-align:center;
+    max-width:600px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.3);
+}
+
+.congrats-heart {
+    font-size:100px;
+    color:#ff4d6d;
+    animation:heartBeat 1s infinite;
+    margin:20px 0;
+}
+
+@keyframes heartBeat {
+    0% {transform:scale(1);}
+    50% {transform:scale(1.2);}
+    100% {transform:scale(1);}
+}
+
+.confetti {
+    position:fixed;
+    width:15px;
+    height:15px;
+    background:#ff4d6d;
+    animation:fall 5s linear infinite;
+}
+
+@keyframes fall {
+    0% {transform:translateY(-100px) rotate(0deg); opacity:1;}
+    100% {transform:translateY(100vh) rotate(360deg); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- PAGE 1 -->
+<div id="page1" class="page active">
+<div class="container">
+    <div class="heart-pulse"><i class="fas fa-heart"></i></div>
+    <h1 class="title">For You, My Love</h1>
+    <p class="subtitle">Every moment with you is a treasure</p>
+
+    <div class="message-box">
+        <p>My dearest,</p>
+        <p>You are the most beautiful part of my life 💕</p>
+    </div>
+
+    <button id="enterBtn" class="enter-btn">Our Memories ❤️</button>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div id="page2" class="page">
+<div class="container">
+
+<div class="header">
+    <button id="backBtn" class="back-btn">⬅ Back</button>
+    <h2>Our fav🎶💗</h2>
+
+    <div class="music-player">
+        <button id="playBtn" class="music-btn">▶ Play</button>
+        <button id="pauseBtn" class="music-btn">⏸ Pause</button>
+    </div>
+</div>
+
+<!-- AUDIO -->
+<audio id="valentineSong" loop>
+    <source src="song.mp3" type="audio/mpeg">
+</audio>
+
+<div class="photos-container">
+
+<div class="photo-item" onclick="openMsg(0)">
+    <div class="photo-frame">
+        <img src="photo5.jpg" class="photo-img" alt="Our first meeting">
+    </div>
+    <div class="photo-caption"> our first Meeting</div>
+</div>
+
+<div class="photo-item" onclick="openMsg(1)">
+    <div class="photo-frame">
+        <img src="photo6.jpg" class="photo-img" alt="Our first ride">
+    </div>
+    <div class="photo-caption"> our first ride </div>
+</div>
+
+<div class="photo-item" onclick="openMsg(2)">
+    <div class="photo-frame">
+        <img src="photo3.jpg" class="photo-img" alt="Special moment">
+    </div>
+    <div class="photo-caption"> ninde vtle kaanal</div>
+</div>
+
+<div class="photo-item" onclick="openMsg(3)">
+    <div class="photo-frame">
+        <img src="photo4.jpg" class="photo-img" alt="Angamaly meetup">
+    </div>
+    <div class="photo-caption"> angamaly meetup</div>
+</div>
+
+</div>
+
+<button id="nextBtn" class="next-btn">Next ❤️</button>
+
+</div>
+</div>
+
+<!-- PAGE 3 - Valentine Question -->
+<div id="page3" class="page">
+<div class="container">
+    <div class="header">
+        <button id="backBtn3" class="back-btn">⬅ Back</button>
+    </div>
+    
+    <div class="valentine-question">
+        <div class="heart-pulse"><i class="fas fa-heart"></i></div>
+        <h1 class="title">Will You Be My Valentine? 💘</h1>
+        <p class="subtitle">This is the most important question of my life...</p>
+        
+        <div class="valentine-buttons">
+            <button id="yesBtn" class="valentine-yes">YES! 💝</button>
+            <button id="noBtn" class="valentine-no">No 😢</button>
+        </div>
+        
+        <p id="invalidMessage" class="invalid-message">That's not a valid answer! Try again! 💕</p>
+    </div>
+</div>
+</div>
+
+<!-- PAGE 4 - Congratulations -->
+<div id="page4" class="page">
+<div class="congrats-page">
+    <div class="congrats-content">
+        <div class="congrats-heart">
+            <i class="fas fa-heart"></i>
+        </div>
+        <h1 class="title">YAY! You Said YES! 🎉</h1>
+        <p class="subtitle">My heart is jumping with joy! 💖</p>
+        
+        <div class="message-box">
+            <p>My dearest Valentine,</p>
+            <p>You've made me the happiest person in the world! 🌎</p>
+            <p>I promise to love you, cherish you, and make every day special for you. 💑</p>
+            <p>This is just the beginning of our forever journey together... ✨</p>
+        </div>
+        
+        <button id="backToStart" class="enter-btn">Back to Start 💕</button>
+    </div>
+</div>
+</div>
+
+<!-- MESSAGE POPUP -->
+<div id="paperCutting" class="paper-cutting">
+<button class="close-cutting" onclick="closeMsg()">✖</button>
+<div class="cutting-paper">
+<h2 id="msgTitle"></h2>
+<p id="msgText"></p>
+</div>
+</div>
+
+<script>
+const quotes=[
+{title:"Our First Meeting",text:"Njn adhyamm kaladyil vech ninne kandoppo just like endhoopole ayii🫠..ivalkk ithra look indoo ennokke pinnee nammal koree neram avde ninn samsarichu pinne nee enikk oru gift thannu athokke thannappo enikk endhoo awww ennokke ayii Karanam enikk aarum gift thannittilla... But you gave me that 🥹🩷 pinne aa hug🫠 that's make an a unforgettable moment atharnnu athile highlight... njn umma vekkan okke vannu..karam akkanda 😁"},
+{title:"Our Adventure",text:"Nammal adhyam ayi vandiyil poyappo just enikk ninde agraham oke fullfill cheythappo kittiya aa happiness😭ethraparanjalum mathiyavillaa...🫠💗 Nammade appazhathe aa physical touchum ellam endho annevare kittatha feel aarnnu that's make me happy...😚you are my world Babe 😘"},
+{title:"That Moment",text:"Njn adhyam ninde vtl vannath oorma undoo....🌝 Athyam okke korach pedichu engilum nee enne cool akki....karyam ninakkum pedi indayii ennalum u just make me feel comfortable 💋🤍pinne avde nadannath onnum parayanda🌝In your arms, I found my home 🏡"},
+{title:"unforgettable",text:"Ouff Angamaly meet nothing about to say...🤌 Enikk ippozhum oorma ind easter time il aarnnu ath gardens nde melil nammal ac de thazhe irunn ennitt rand juice order akki...🌝 First okke pathiye samsarich okke thodagi pinne Nammade unforgettable kissing aarnnu avde 🤌🤍namkkum nere oru couples irikkundayi Nammak korach neram oke avare nooki irunn...pinne pathiye nammal poy....🫴 Pathiye nammal nadannu athre enikk oorma ollu bakki ellam poka pole aarnnu...🫢 Ninde amma vilich aara koodenn okke chodich but nammal endhokkeyo paranju...athinu shesham anu phone medich vecheee... Am really sorry about that🫠 pakshe nee ennalum efforts eduth nee vilichuu thats made me fall in love moree...and LOVE YOU MORE Babeee🥹🤍Forever isn’t long enough with you 💍"}
+];
+
+// Page elements
+const page1 = document.getElementById('page1');
+const page2 = document.getElementById('page2');
+const page3 = document.getElementById('page3');
+const page4 = document.getElementById('page4');
+const enterBtn = document.getElementById('enterBtn');
+const backBtn = document.getElementById('backBtn');
+const nextBtn = document.getElementById('nextBtn');
+const backBtn3 = document.getElementById('backBtn3');
+const backToStart = document.getElementById('backToStart');
+const valentineSong = document.getElementById('valentineSong');
+const playBtn = document.getElementById('playBtn');
+const pauseBtn = document.getElementById('pauseBtn');
+const yesBtn = document.getElementById('yesBtn');
+const noBtn = document.getElementById('noBtn');
+const invalidMessage = document.getElementById('invalidMessage');
+const paperCutting = document.getElementById('paperCutting');
+const msgTitle = document.getElementById('msgTitle');
+const msgText = document.getElementById('msgText');
+
+// Page navigation
+enterBtn.onclick = () => {
+    page1.classList.remove('active');
+    page2.classList.add('active');
+};
+
+backBtn.onclick = () => {
+    page2.classList.remove('active');
+    page1.classList.add('active');
+    valentineSong.pause();
+};
+
+nextBtn.onclick = () => {
+    page2.classList.remove('active');
+    page3.classList.add('active');
+};
+
+backBtn3.onclick = () => {
+    page3.classList.remove('active');
+    page2.classList.add('active');
+};
+
+backToStart.onclick = () => {
+    page4.classList.remove('active');
+    page1.classList.add('active');
+};
+
+// Music controls
+playBtn.onclick = () => valentineSong.play();
+pauseBtn.onclick = () => valentineSong.pause();
+
+// Valentine question logic
+yesBtn.onclick = () => {
+    page3.classList.remove('active');
+    page4.classList.add('active');
+    createConfetti();
+};
+
+noBtn.onmouseover = () => {
+    // Move the No button randomly
+    const x = Math.random() * 80;
+    const y = Math.random() * 80;
+    noBtn.style.transform = `translate(${x}px, ${y}px)`;
+};
+
+noBtn.onclick = () => {
+    // Show invalid message
+    invalidMessage.style.display = 'block';
+    setTimeout(() => {
+        invalidMessage.style.display = 'none';
+    }, 2000);
+};
+
+// Photo message functions
+function openMsg(i) {
+    paperCutting.style.display = "flex";
+    msgTitle.innerText = quotes[i].title;
+    msgText.innerText = quotes[i].text;
+}
+
+function closeMsg() {
+    paperCutting.style.display = "none";
+}
+
+// Confetti effect for congrats page
+function createConfetti() {
+    const colors = ['#ff4d6d', '#ff8fab', '#ffafbd', '#ffc3a0', '#ff6b6b', '#ffa726'];
+    
+    for (let i = 0; i < 100; i++) {
+        const confetti = document.createElement('div');
+        confetti.className = 'confetti';
+        confetti.style.left = Math.random() * 100 + 'vw';
+        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+        confetti.style.animationDelay = Math.random() * 5 + 's';
+        confetti.style.width = Math.random() * 10 + 10 + 'px';
+        confetti.style.height = Math.random() * 10 + 10 + 'px';
+        document.querySelector('.congrats-page').appendChild(confetti);
+        
+        // Remove confetti after animation
+        setTimeout(() => {
+            confetti.remove();
+        }, 5000);
+    }
+}
+</script>
+
+</body>
+</html>
